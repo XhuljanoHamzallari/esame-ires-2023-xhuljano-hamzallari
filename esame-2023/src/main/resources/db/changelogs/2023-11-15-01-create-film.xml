@@ -6,38 +6,40 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
         objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
 
-    <changeSet id="2023-11-15-05-viewer-create" author="Xhuljano Hamzallari">
+    <changeSet id="2023-11-15-01-create-film" author="Xhuljano Hamzallari">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="viewer"/>
+                <tableExists tableName="film"/>
             </not>
         </preConditions>
-        <comment>viewer create</comment>
+        <comment>film create</comment>
 
-        <createTable tableName="viewer">
+        <createTable tableName="film">
             <column name="id" type="INT" autoIncrement="true">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="name" type="VARCHAR(255)" >
+            <column name="author" type="VARCHAR(255)" >
                 <constraints nullable="false"/>
             </column>
-            <column name="surname" type="VARCHAR(255)" >
-                <constraints nullable="false"/>
-            </column>
-
-            <column name="birth_year" type="DATE" >
+            <column name="producer" type="VARCHAR(255)" >
                 <constraints nullable="false"/>
             </column>
 
-            <column name="id_ticket" type="INT" >
+            <column name="type" type="VARCHAR(255)" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="minimum_age" type="INT" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="duration" type="INT" >
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addForeignKeyConstraint baseColumnNames="id_ticket" baseTableName="viewer"
-                                 constraintName="fk_viewer_on_ticket" referencedColumnNames="id"
-                                 referencedTableName="ticket"/>
+
         <rollback>
-            <dropTable tableName="viewer"/>
+            <dropTable tableName="film"/>
         </rollback>
     </changeSet>
 

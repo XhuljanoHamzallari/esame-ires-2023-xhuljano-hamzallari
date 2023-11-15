@@ -21,9 +21,6 @@
             <column name="price" type="DOUBLE" >
                 <constraints nullable="false"/>
             </column>
-            <column name="surname" type="VARCHAR(255)" >
-                <constraints nullable="false"/>
-            </column>
 
             <column name="position" type="VARCHAR(100)" >
                 <constraints nullable="false"/>
@@ -32,10 +29,15 @@
             <column name="id_cinema_room" type="INT" >
                 <constraints nullable="false"/>
             </column>
+
+
         </createTable>
+
         <addForeignKeyConstraint baseColumnNames="id_cinema_room" baseTableName="ticket"
                                  constraintName="fk_ticket_on_cinema_room" referencedColumnNames="id"
                                  referencedTableName="cinema_room"/>
+
+
         <rollback>
             <dropTable tableName="ticket"/>
         </rollback>
