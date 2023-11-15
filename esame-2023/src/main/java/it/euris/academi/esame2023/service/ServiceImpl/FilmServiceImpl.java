@@ -5,9 +5,12 @@ import it.euris.academi.esame2023.exception.IdMustBeNullException;
 import it.euris.academi.esame2023.exception.IdMustNotBeNullException;
 import it.euris.academi.esame2023.repository.FilmRepository;
 import it.euris.academi.esame2023.service.FilmService;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class FilmServiceImpl implements FilmService {
     private FilmRepository filmRepository;
     @Override
