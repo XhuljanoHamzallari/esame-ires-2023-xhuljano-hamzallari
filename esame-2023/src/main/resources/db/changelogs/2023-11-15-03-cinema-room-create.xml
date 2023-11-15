@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="2023-11-15-05-cinema-room-create" author="Xhuljano Hamzallari">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="cinema_room"/>
+            </not>
+        </preConditions>
+        <comment>cinema_room create</comment>
+
+        <createTable tableName="cinema_room">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="id_viewer" type="INT(100)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="id_film" type="INT" >
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_film" baseTableName="cinema_room"
+                                 constraintName="fk_cinema_room_on_film" referencedColumnNames="id"
+                                 referencedTableName="film"/>
+        <addForeignKeyConstraint baseColumnNames="id_viewer" baseTableName="cinema_room"
+                                 constraintName="fk_cinema_room_on_viewer" referencedColumnNames="id"
+                                 referencedTableName="viewer"/>
+
+        <rollback>
+            <dropTable tableName="cinema_room"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

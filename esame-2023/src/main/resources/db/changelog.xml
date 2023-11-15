@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <include file="db/changelogs/2023-11-15-01-create-cinema.xml"/>
+    <include file="db/changelogs/2023-11-15-02-create-film.xml"/>
+    <include file="db/changelogs/2023-11-15-04-ticket-create.xml"/>
+    <include file="db/changelogs/2023-11-15-05-viewer-create.xml"/>
+    <include file="db/changelogs/2023-11-15-03-cinema-room-create.xml"/>
+</databaseChangeLog>

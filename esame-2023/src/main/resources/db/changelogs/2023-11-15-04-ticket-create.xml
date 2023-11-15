@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+
+    <changeSet id="2023-11-15-04-ticket-create" author="Xhuljano Hamzallari">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="ticket"/>
+            </not>
+        </preConditions>
+        <comment>ticket create</comment>
+
+        <createTable tableName="ticket">
+            <column name="id" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="price" type="DOUBLE" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(255)" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="position" type="VARCHAR(100)" >
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="id_cinema_room" type="INT" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="id_cinema_room" baseTableName="ticket"
+                                 constraintName="fk_ticket_on_cinema_room" referencedColumnNames="id"
+                                 referencedTableName="cinema_room"/>
+        <rollback>
+            <dropTable tableName="ticket"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
